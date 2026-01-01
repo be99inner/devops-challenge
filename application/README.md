@@ -29,7 +29,7 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd devops-bedrock/application
+   cd devops-challenge/application
    ```
 
 2. Install dependencies:
