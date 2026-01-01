@@ -19,8 +19,9 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
    ```
 
 > [!NOTE]
-> If you're facing the swag command not found, Try to export PATH
->   $ export PATH=$PATH:$(go env GOPATH)/bin
+> If you're facing the swag command not found.
+> Try to export PATH
+> $ export PATH=$PATH:$(go env GOPATH)/bin
 
 
 ## Setup
