@@ -3,7 +3,7 @@
 # List images via API
 echo "Listing images from API..."
 response=$(curl -s -w "%{http_code}" -X 'GET' \
-  'http://localhost:3000/api/list' \
+  'http://localhost:3000/files' \
   -H 'accept: application/json')
 http_code=${response: -3}
 body=${response%???}
