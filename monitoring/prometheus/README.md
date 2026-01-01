@@ -17,7 +17,7 @@ graph TD
     E[Pushgateway<br/>For Batch Jobs] -->|Push Metrics| B
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Improvement of production setup and kubernetes integration.
 
 ## Improvements
