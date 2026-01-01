@@ -6,3 +6,7 @@ Grafana is visualizer dashboard.
 
 On Docker/container of the Grafana, we can use the feature of auto provisioning.
 - [Grafana Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
+
+## TODO
+
+- [ ] The metrics of application is already scraped by Prometheus. Need dashboard and refine the metrics to complete the application metric dashboard
