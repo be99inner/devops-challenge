@@ -36,12 +36,12 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
    go mod tidy
    ```
 
-3. Configure environment variables. You can set them directly or use a `.env` file (optional):
+3. Configure environment variables. You can set them directly or use a `.env` file (optional). For AWS S3, omit S3_ACCESS_KEY and S3_SECRET_KEY to use IAM roles or default credential chain:
    ```
    S3_ENDPOINT=http://localhost:9000
    S3_REGION=us-east-1
-   S3_ACCESS_KEY=your-access-key
-   S3_SECRET_KEY=your-secret-key
+   S3_ACCESS_KEY=your-access-key  # Optional for AWS IAM
+   S3_SECRET_KEY=your-secret-key  # Optional for AWS IAM
    BUCKET=your-bucket-name
    LOG_BUCKET=log-bucket
    PORT=3000

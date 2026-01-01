@@ -50,7 +50,7 @@ graph TD
 ### Config (config/config.go)
 - Manages application configuration
 - Loads environment variables using envconfig
-- Includes S3 endpoint, credentials, file bucket, log bucket, port
+- Includes S3 endpoint, optional credentials (for MinIO/local), file bucket, log bucket, port
 
 ### Server (internal/server/server.go)
 - Sets up Fiber web framework
@@ -67,7 +67,7 @@ graph TD
 
 ### S3 Client (pkg/s3/s3.go)
 - Wrapper around AWS SDK for Go
-- Manages S3-compatible connections
+- Manages S3-compatible connections with auto-detection of AWS credentials (IAM roles, env vars, etc.)
 - Provides methods for ListObjects, PutObject, DeleteObject, UploadToBucket
 
 ### Logging

@@ -16,12 +16,18 @@ type Client struct {
 }
 
 func NewClient(endpoint, region, accessKey, secretKey, bucket string) (*Client, error) {
-	sess, err := session.NewSession(&aws.Config{
+	config := &aws.Config{
 		Region:           aws.String(region),
 		Endpoint:         aws.String(endpoint),
 		S3ForcePathStyle: aws.Bool(true),
-		Credentials:      credentials.NewStaticCredentials(accessKey, secretKey, ""),
-	})
+	}
+
+	// Use static credentials if provided, otherwise rely on default AWS credential chain (IAM roles, env vars, etc.)
+	if accessKey != "" && secretKey != "" {
+		config.Credentials = credentials.NewStaticCredentials(accessKey, secretKey, "")
+	}
+
+	sess, err := session.NewSession(config)
 	if err != nil {
 		return nil, err
 	}
