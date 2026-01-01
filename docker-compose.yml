@@ -1,0 +1,44 @@
+# version: '3.8'
+
+services:
+  # The S3-compatible Server
+  minio:
+    image: minio/minio
+    container_name: minio_server
+    ports:
+      - "9000:9000"   # API port
+      - "9001:9001"   # Console UI port
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+
+  # Automatically create the bucket on startup
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set local http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb local/my-test-bucket;
+      /usr/bin/mc mb local/my-log-bucket;
+      exit 0;
+      "
+
+  # Our Go Fiber Application
+  image-app:
+    build: application
+    container_name: go-s3-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - minio
+    environment:
+      - APP_PORT=3000
+      - S3_ENDPOINT=http://minio:9000
+      - S3_REGION=us-east-1
+      - S3_ACCESS_KEY=minioadmin
+      - S3_SECRET_KEY=minioadmin
+      - BUCKET=my-test-bucket
+      - LOG_BUCKET=my-log-bucket
