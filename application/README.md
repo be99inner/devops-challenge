@@ -4,7 +4,7 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
 
 ## Prerequisites
 
-- Go 1.21 or later
+- Go 1.25.5 or later
 - MinIO server or AWS S3 (for production)
 
 ## Setup
@@ -20,13 +20,14 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
    go mod tidy
    ```
 
-3. Configure environment variables. Copy `.env` and update values:
+3. Configure environment variables. You can set them directly or use a `.env` file (optional):
    ```
    S3_ENDPOINT=http://localhost:9000
    S3_REGION=us-east-1
    S3_ACCESS_KEY=your-access-key
    S3_SECRET_KEY=your-secret-key
    BUCKET=your-bucket-name
+   LOG_BUCKET=log-bucket
    PORT=3000
    ```
 
@@ -49,6 +50,10 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
 - `DELETE /files/{key}` - Delete file by key
 - `GET /swagger/*` - API documentation
 - `GET /metrics` - Prometheus metrics
+
+## Logging
+
+Application logs, including HTTP requests, are written to both stdout for real-time visibility and a local log file. On application shutdown, the log file is automatically uploaded to the configured S3 log bucket for persistence.
 
 ## Development
 
