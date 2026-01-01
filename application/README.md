@@ -7,6 +7,22 @@ A simple REST API for managing files in an S3-compatible bucket (e.g., MinIO).
 - Go 1.25.5 or later
 - MinIO server or AWS S3 (for production)
 
+## Generate Swagger Documents
+
+1. Install swag.
+   ```bash
+   go install github.com/swaggo/swag/cmd/swag@latest
+   ```
+2. Generate docs.
+   ```bash
+   swag init -g cmd/app/main.go
+   ```
+
+> [!NOTE]
+> If you're facing the swag command not found, Try to export PATH
+>   $ export PATH=$PATH:$(go env GOPATH)/bin
+
+
 ## Setup
 
 1. Clone the repository:
