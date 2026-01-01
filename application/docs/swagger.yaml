@@ -1,0 +1,68 @@
+basePath: /
+host: localhost:3000
+info:
+  contact: {}
+  description: A simple API to manage files in S3/Minio bucket
+  title: S3 File Manager API
+  version: "1.0"
+paths:
+  /files:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all files in the S3 bucket
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+      summary: List files in bucket
+      tags:
+      - files
+  /files/{key}:
+    delete:
+      description: Delete a file from the S3 bucket by key
+      parameters:
+      - description: File key
+        in: path
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deleted
+          schema:
+            type: string
+      summary: Delete file from bucket
+      tags:
+      - files
+  /upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload a file to the S3 bucket
+      parameters:
+      - description: File to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Uploaded
+          schema:
+            type: string
+      summary: Upload file to bucket
+      tags:
+      - files
+swagger: "2.0"
