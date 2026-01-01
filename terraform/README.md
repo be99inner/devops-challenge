@@ -12,4 +12,4 @@ Terraform design to store the component and design of Terraform on mono reposito
 - Terraform backend store the statefile of configuration should be limited the policy to access. It stores sensitive information.
 
 ## Some of list of the provider modules.
-- ![AWS Providers](https://registry.terraform.io/namespaces/terraform-aws-modules)
+- [AWS Providers](https://registry.terraform.io/namespaces/terraform-aws-modules)
