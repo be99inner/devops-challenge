@@ -53,14 +53,18 @@ module "app" {
 }
 
 # S3 Buckets
+resource "random_id" "s3_suffix" {
+  byte_length = 16
+}
+
 module "s3_data" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 3.0"
 
-  bucket = "${var.environment}-data-bucket"
+  bucket = "${var.environment}-data-bucket-${random_id.s3_suffix.dec}"
 
   tags = merge(var.tags, {
-    Name = "${var.environment}-data-bucket"
+    Name = "${var.environment}-data-bucket-${random_id.s3_suffix.dec}"
     Type = "data"
   })
 }
@@ -69,14 +73,14 @@ module "s3_logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 3.0"
 
-  bucket = "${var.environment}-logs-bucket"
+  bucket = "${var.environment}-logs-bucket-${random_id.s3_suffix.dec}"
 
   versioning = {
     enabled = true
   }
 
   tags = merge(var.tags, {
-    Name = "${var.environment}-logs-bucket"
+    Name = "${var.environment}-logs-bucket-${random_id.s3_suffix.dec}"
     Type = "logs"
   })
 }
@@ -114,3 +118,4 @@ resource "aws_iam_policy" "s3_write_policy" {
 
   tags = var.tags
 }
+
