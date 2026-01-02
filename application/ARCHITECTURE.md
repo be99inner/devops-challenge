@@ -3,10 +3,10 @@
 ## Overview
 The S3 File Manager API is a Go-based REST service for managing files in S3-compatible storage (e.g., MinIO). It provides endpoints for listing, uploading, and deleting files. Application logs are captured and uploaded to a designated S3 log bucket on application shutdown for persistence.
 
+## Architecture Diagram
+
 > [!CAUTION]
 > Application should consider to use the log agent collector instead of use the application log uploading to S3
-
-## Architecture Diagram
 
 ```mermaid
 graph TD
@@ -81,10 +81,11 @@ graph TD
 - **Monitoring**: Prometheus metrics
 - **Documentation**: Swagger/OpenAPI
 
-> [!NOTE]
-> This project should be setup in different architecture. The log collection should be able to setup like following architecture.
 
 ## Recommandation
+
+> [!NOTE]
+> This project should be setup in different architecture. The log collection should be able to setup like following architecture.
 
 ```mermaid
 sequenceDiagram
