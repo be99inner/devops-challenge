@@ -6,16 +6,6 @@ The S3 File Manager API is a Go-based REST service for managing files in S3-comp
 > [!CAUTION]
 > Application should consider to use the log agent collector instead of use the application log uploading to S3
 
-
-## Recommandtion
-
-```mermaid
-sequenceDiagram
-    Log Collector Agent -->> Application: Collect/Scrape the stdout log from application
-    Log Collector Agent -->> Log Server: Stream log
-
-```
-
 ## Architecture Diagram
 
 ```mermaid
@@ -90,3 +80,15 @@ graph TD
 - **Logging**: Multi-writer to stdout and file, uploaded to S3
 - **Monitoring**: Prometheus metrics
 - **Documentation**: Swagger/OpenAPI
+
+> [!NOTE]
+> This project should be setup in different architecture. The log collection should be able to setup like following architecture.
+
+## Recommandation
+
+```mermaid
+sequenceDiagram
+    Log Collector Agent -->> Application: Collect/Scrape the stdout log from application
+    Log Collector Agent -->> Log Server: Stream log
+
+```
