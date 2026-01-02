@@ -4,6 +4,18 @@
 - Deploy s3 module
 - Create IAM of application
 
+## Prerequisite
+
+- Terraform
+
+## Project Setup
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
 ## TODO
 
 - [ ] Improve the backend setup for Terraform. Using one of configurable of [Terraform Backend](https://developer.hashicorp.com/terraform/language/backend)
